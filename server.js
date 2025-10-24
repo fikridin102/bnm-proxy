@@ -4,15 +4,6 @@ import fetch from "node-fetch";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ Root route (fixes "Cannot GET /")
-app.get("/", (req, res) => {
-  res.send(`
-    <h2>✅ BNM Proxy Server Running</h2>
-    <p>Use <code>/api/bnm-proxy?date=YYYY-MM-DD</code> to fetch exchange rates.</p>
-    <p>Example: <a href="/api/bnm-proxy?date=2025-10-24">/api/bnm-proxy?date=2025-10-24</a></p>
-  `);
-});
-
 // ✅ Proxy route for BNM API
 app.get("/api/bnm-proxy", async (req, res) => {
   const date = req.query.date || new Date().toISOString().split("T")[0];
